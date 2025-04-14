@@ -19,7 +19,7 @@ def initialize_resources():
 
     # Connect to MongoDB
     mongo_db = query_db_connection()
-    collection = mongo_db['Python_toolkit']
+    collection = mongo_db['SQL_toolkit']
     return retriever, collection
 
 def initialize_chains(retriever):
@@ -72,9 +72,9 @@ def call_function(name, args: dict, chat_history, chains_dict):
 def main():
     # Set the page_title
     st.set_page_config(
-            page_title="🦜 GBS BUS 390 Virtual TA - Beta", page_icon="🔍", layout="wide")
+            page_title="🦜 GBS BUS 390 SQL Virtual TA - Beta", page_icon="🔍", layout="wide")
     
-    st.header("BUS 390 Virtual TA - Beta 🔍")
+    st.header("BUS 390 SQL Virtual TA - Beta 🔍")
     # st.write("Currently support queries on syllabus and coding request.")
     sidebar()
 

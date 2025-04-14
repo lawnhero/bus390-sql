@@ -10,23 +10,26 @@ def sidebar():
         st.markdown(
             "## Example use cases\n"
             "1. How can I contact the professor?\n" 
-            "2. What's a parameter in Python function\n"
-            "3. How to use my own module in Colab? \n"
-            "4. How to fix the error in my code? \n"
-            "5. Give me a practice question on Python functions\n"
+            "2. How to create a new SQLite database?\n"
+            "3. How to create a table with proper data types? \n"
+            "4. How to write a basic SELECT query? \n"
+            "5. How to join two tables together?\n"
         )
         # st.markdown("---")
         st.markdown(
             "## General advice\n"
-            "1. Provide detailed context.\n" 
-            "2. Try your questions in different ways.\n"
-            "3. Query about specific task.\n"
+            "1. Specify if you're using SQLite CLI or another interface.\n" 
+            "2. Include your table structure when asking about queries.\n"
+            "3. For JOIN questions, describe the relationship between tables.\n"
         )
         st.markdown("---")
         st.markdown("# About")
         st.markdown(
-            '''📖 Virtual TA allows you to ask questions about course logistics, 
-            as well as any Python coding questions.'''
+            '''📖 Virtual TA helps with SQLite basics including:
+            - Database and table creation
+            - Basic SELECT queries
+            - Table joins
+            - SQLite CLI commands'''
         )
         st.markdown(
             "This tool is a work in progress. "

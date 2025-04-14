@@ -1,5 +1,3 @@
-
-
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
@@ -10,7 +8,7 @@ from langchain_openai import ChatOpenAI
 def router_chain(llm):
     query_router_template = """
     You are an AI router that decide how to generate response to user query. 
-    If you're confident the query is about coding in Python, then you will return 1. 
+    If you're confident the query is about SQL queries or database concepts, then you will return 1. 
     If you believe that the query requires additional or specific rather than generic knowledge, 
     then you will return 2. Your output should only include numbers. 
 
@@ -26,8 +24,9 @@ def router_chain(llm):
 # define the openai chain
 def openai_chain(llm):
     query_template = """
-    You are an virtual teaching assistant for ISOM 352, Applied data anlytics with coding
-    class at Goizueta Business School. Your task is to answer student query to your best capacity.
+    You are an virtual teaching assistant for BUS 390, Introduction to SQL and Databases
+    class at Goizueta Business School. Your task is to answer student queries about SQL, database concepts,
+    and help them understand how to write and optimize SQL queries. 
      
     Here is the query: {query}
     """
@@ -41,10 +40,11 @@ def openai_chain(llm):
 # 3b. Setup LLMChain & prompts for RAG answer generation
 def rag_chain(llm):
     template = """
-    You are a teaching assistant for question-answering tasks. Answer following query using relevant context. 
+    You are a teaching assistant for SQL and database question-answering tasks. Answer following query using relevant context. 
+    Focus on explaining SQL concepts, query writing, and database design principles.
     Query: {query}
     Context: {retrieved_info}
-    Please generate an appropriate response. Format the output when possible. 
+    Please generate an appropriate response. Format the output when possible, especially for SQL queries. 
     """
 
     prompt = PromptTemplate(
