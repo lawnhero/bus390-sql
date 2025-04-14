@@ -84,7 +84,7 @@ def main():
     agent, chain_dict = initialize_chains(retriever)
     
     # Initialize the query text box
-    initial_text = "Hi. I'm your virtual TA Peyton. How can I help you today?"
+    initial_text = "Hi. I'm your virtual TA. How can I help with your SQL learning today?"
 
     # Initialize chat history in session state
     if "chat_history" not in st.session_state:
@@ -103,7 +103,7 @@ def main():
     
     
     # get user query
-    if user_query := st.chat_input(initial_text):
+    if user_query := st.chat_input("Please enter your SQL question here..."):
         
         # display user query
         with st.chat_message("Human"):
