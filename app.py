@@ -35,11 +35,11 @@ def initialize_chains(retriever):
         
         # Create base chains
         chains_dict = {
-            'rag': chains.rag_chain(claude_haiku, retriever),
+            'course': chains.rag_chain(claude_haiku, retriever),
             'exercise': chains.exercise_chain(claude_sonnet),
             'chat': chains.chat_chain(gpt4o_mini),
-            'explain': chains.code_chain(gpt4o),
-            'debug': chains.code_chain(claude_haiku),
+            'explain': chains.explain_chain(gpt4o),
+            'debug': chains.debug_chain(claude_haiku),
         }
         
         # Create tool chain
@@ -55,16 +55,8 @@ def initialize_chains(retriever):
 def call_function(name, args: dict, chat_history, chains_dict):
     """Invoke the appropriate tool based on the name and arguments."""
 
-    if name == "course_information":
-        return chains_dict['rag'].stream(input={'chat_history': chat_history,**args})     
-    if name == "explain_concept":
-        return chains_dict['explain'].stream(input={'chat_history': chat_history, **args})
-    if name == "generate_exercise":
-        return chains_dict['exercise'].stream(input={'chat_history': chat_history, **args})
-    if name == "debug_code":
-        return chains_dict['debug'].stream(input=args)
-    if name == "general_chat":
-        return chains_dict['chat'].stream(input={**args, "chat_history": chat_history})
+    if name in ["course", "explain", "exercise", "chat", "debug"]:
+        return chains_dict[name].stream(input={'chat_history': chat_history, **args})
     else:
         return "Invalid tool name"
         
@@ -84,7 +76,7 @@ def main():
     agent, chain_dict = initialize_chains(retriever)
     
     # Initialize the query text box
-    initial_text = "Hi. I'm your virtual TA. How can I help with your SQL learning today?"
+    initial_text = "Hi. I'm your BUS 390 SQL Virtual TA. How can I help you today?"
 
     # Initialize chat history in session state
     if "chat_history" not in st.session_state:

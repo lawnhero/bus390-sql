@@ -41,7 +41,7 @@ def rag_tool(chain):
         return chain.stream(args.query)
     
     return StructuredTool(
-        name="course_information",
+        name="course",
         description="Use this tool for course-specific information, ex: instructor, syllabus, policies or assignments.",
         func=_run,
         args_schema=RagArgs
@@ -53,8 +53,8 @@ def explain_tool(chain):
         return chain.invoke({"query": args.query, "chat_history": args.previous_query})
     
     return StructuredTool(
-        name="explain_concept",
-        description="Use this tool when the query asks for explanation of Python or other concepts.",
+        name="explain",
+        description="Use this tool when the query asks for explanation of SQL or other concepts.",
         func=_run,
         args_schema=ExplainArgs
     )
@@ -70,8 +70,8 @@ def exercise_tool(chain):
         })
     
     return StructuredTool(
-        name="generate_exercise",
-        description="Use this tool when the query asks for Python practice exercises or check answers.",
+        name="exercise",
+        description="Use this tool when the query asks for SQL practice exercises or check answers.",
         func=_run,
         args_schema=ExerciseArgs
     )
@@ -100,7 +100,7 @@ def debug_tool(chain):
         })
     
     return StructuredTool(
-        name="debug_code",
+        name="debug",
         description="Use this tool when the query is about code errors or debugging help.",
         func=_run,
         args_schema=DebugArgs
@@ -118,7 +118,7 @@ def chat_tool(chain):
         })
     
     return StructuredTool(
-        name="general_chat",
+        name="chat",
         description="Use this tool for general conversation or when no other tools are appropriate.",
         func=_run,
         args_schema=ChatArgs
@@ -127,7 +127,7 @@ def chat_tool(chain):
 def create_tool_chain(llm: BaseLanguageModel, chain_dict: dict):
     """Create a tool-enabled LLM chain."""
     tools = [
-        rag_tool(chain_dict['rag']),
+        rag_tool(chain_dict['course']),
         explain_tool(chain_dict['explain']),
         exercise_tool(chain_dict['exercise']),
         debug_tool(chain_dict['debug']),
