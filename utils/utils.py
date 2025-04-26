@@ -4,12 +4,12 @@ import streamlit as st
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from datetime import datetime
+import os
+
+MONGODB_PASSWORD = os.getenv('MONGODB_PASSWORD')
 
 # knowledge base path
 kb_db_path = 'data/emb_db'
-MONGODB_PASSWORD="9vYq3TWWsQn7bp2v"
-
-
 
 @st.cache_resource
 # load the vectorized database
