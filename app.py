@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain_core.messages import HumanMessage, AIMessage
 
-from langchain.globals import set_verbose
+# from langchain.globals import set_verbose
 import utils.chains_lcel as chains
 from utils.sidebar import sidebar
 import utils.llm_models as llms
