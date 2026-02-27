@@ -3,5 +3,6 @@ langchain_community
 langchain
 langchain_openai 
 langchain_anthropic
-faiss-cpu
+chromadb
+python-dotenv
 pymongo

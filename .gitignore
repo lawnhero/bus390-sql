@@ -11,3 +11,10 @@ etc/
 .*
 !.gitignore
 !/data/
+
+# Environment variables
+.env
+
+# Database directories
+data/emb_db/
+data/chroma_db/
