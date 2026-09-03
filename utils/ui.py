@@ -21,7 +21,7 @@ def escape_md_dollars(text: str) -> str:
     """Escape $ so Streamlit markdown does not treat it as LaTeX."""
     if not text:
         return text
-    placeholder = ""
+    placeholder = "\ue000"  # private-use char that never occurs in model output
     protected = text.replace("\\$", placeholder)
     return protected.replace("$", "\\$").replace(placeholder, "\\$")
 
@@ -78,7 +78,8 @@ ROUTE_META = {
         "badge": "Debugging help",
         "icon": ":material/build:",
         "color": "violet",
-        "help": "Debugging suggestions based on the SQL and error you shared.",
+        "help": "Hints toward the fix, based on the SQL and error you shared — "
+                "you make the change yourself.",
     },
     "chat": {
         "working": "Thinking about your message",
@@ -236,7 +237,8 @@ QUICK_ACTIONS = [
      "clarify": "Let's practice. Pick a topic below, or type the one you want to drill."},
     {"label": "Fix my error", "icon": ":material/build:", "kind": "intent",
      "value": "debug", "needs": "attempt",
-     "clarify": "Paste your SQL and the error message into the chat, and I'll help you fix it."},
+     "clarify": "Paste your SQL and the error message into the chat, and I'll point "
+                "you toward the fix — you'll make the change yourself."},
 ]
 
 FOLLOW_UPS = [
@@ -271,6 +273,14 @@ def render_action_row(actions, *, key_prefix):
 
 @st.dialog("How this tutor works", width="large")
 def show_help_dialog():
+    st.subheader("Hints, not answers")
+    st.markdown(
+        "- Concept questions (\"what does LEFT JOIN do?\") get direct explanations "
+        "with examples\n"
+        "- Your own SQL, debugging, and anything from a quiz get **hints** — "
+        "I won't hand you the answer, even if you ask twice\n"
+        "- Course logistics (deadlines, contacts, policies) get straight answers"
+    )
     st.subheader("Where answers come from")
     st.markdown(
         "- :blue-badge[Course materials] — answered from the BUS 390 syllabus and course content\n"

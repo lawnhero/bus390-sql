@@ -33,8 +33,10 @@ MEMORY_WINDOW = 6  # messages of history passed to the chains
 
 GREETING = (
     f"Hi! I'm {TA_NAME}, your BUS 390 SQL Virtual TA. I can explain anything from "
-    "the nine modules (M0–M8), build practice questions, help fix errors, and "
-    "answer course questions — no question is too basic."
+    "the nine modules (M0–M8), build practice questions, and help you fix errors — "
+    "no question is too basic. One rule: on quiz questions and your own SQL I give "
+    "hints instead of answers, because that's how it sticks. Course logistics "
+    "questions get straight answers."
 )
 
 
